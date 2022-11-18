@@ -19,8 +19,8 @@ pipeline {
               }
             }
         }  
-        stage { 
-          stage {
+        stage('Docker build and push') { 
+          steps {
             sh 'printenv'
             sh 'docker build -t jvandenbos/numeric-app:""$GIT_COMMIT"" .'
             sh 'docker push jvandenbos/numeric-app:""$GIT_COMMIT""'
