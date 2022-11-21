@@ -67,13 +67,13 @@
 			<plugin>
     			<groupId>org.pitest</groupId>
     			<artifactId>pitest-maven</artifactId>
-    			<version>LATEST</version>
+    			<version>1.9.11</version>
 
 				<dependencies>
 					<dependency>
 						<groupId>org.pitest</groupId>
 						<artifactId>pitest-junit5-plugin</artifactId>
-						<version>LATEST</version>
+						<version>1.1.0</version>
 					</dependency>
 				</dependencies>
 				<configuration>
