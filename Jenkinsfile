@@ -21,7 +21,14 @@ pipeline {
         }
         stage('SonarQube - SAST') {
             steps {
-              sh "mvn clean verify sonar:sonar -Dsonar.projectKey=numeric-application -Dsonar.host.url=http://secops2.minservers.com:9000 -Dsonar.login=sqp_6947a6a47e5a8858d6418031c5f991a0d159e23b"
+              withSonarQubeEnv('SonarQube') {
+                sh "mvn clean verify sonar:sonar -Dsonar.projectKey=numeric-application -Dsonar.host.url=http://secops2.minservers.com:9000 -Dsonar.login=sqp_6947a6a47e5a8858d6418031c5f991a0d159e23b"
+              }
+              timeout(time: 2, unit: 'MINUTES') {
+                  // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                  // true = set pipeline to UNSTABLE, false = don't
+                  waitForQualityGate abortPipeline: true
+              }
             }
         }
 
